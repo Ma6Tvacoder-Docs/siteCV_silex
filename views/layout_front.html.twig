@@ -5,56 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/microcms.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/landing-page.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/styleFront.css') }}" rel="stylesheet">
+
     <title>MicroCMS - {% block title %}{% endblock %}</title>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ path('home') }}">MicroCMS</a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar-collapse-target">
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li class="{% if adminMenu is defined %}active{% endif %}"><a href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>
-                        {% endif %}
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span> Welcome, {{ app.user.username }} <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ path('logout') }}">Log out</a></li>
-                                </ul>
-                            </li>
-                        {% else %}
-                            <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span> Not connected <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ path('login') }}">Log in</a></li>
-                                </ul>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div><!-- /.container -->
-        </nav>
-        <div id="content">{% block content %}{% endblock %}</div>
-        <footer class="footer col-md-12">
-            <a href="https://github.com/bpesquet/OC-MicroCMS">MicroCMS</a> is a minimalistic CMS built as a showcase for modern PHP development.
-        </footer>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="{{ path('home') }}">MicroCMS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+      {% if is_granted('ROLE_ADMIN') %}
+          <li class="{% if adminMenu is defined %}active{% endif %} nav-item"><a href="{{ path('admin') }}" class="nav-link"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>
+      {% endif %}
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          <li class="dropdown nav-item">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="">
+              <span class="glyphicon glyphicon-user"></span>Welcome, {{ app.user.username }}  <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                  <li class="nav-item"><a href="{{ path('logout') }}" class="nav-link">Log out</a></li>
+              </ul>
+          </li>
+      {% else %}
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-user"></span> Not connected <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                  <li><a href="{{ path('login') }}">Log in</a></li>
+              </ul>
+          </li>
+      {% endif %}
+      </ul>
     </div>
+  </nav>
+      <div id="content">{% block content %}{% endblock %}</div>
+      <footer class="footer col-md-12">
+        <div class="container">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#">Home</a>
+            </li>
+            <li class="footer-menu-divider list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#about">About</a>
+            </li>
+            <li class="footer-menu-divider list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#services">Services</a>
+            </li>
+            <li class="footer-menu-divider list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+          <p class="copyright text-muted small">Copyright &copy; Your Company 2017. All Rights Reserved</p>
+        </div>
+      </footer>
 
     <!-- jQuery -->
     <script src="{{ asset('/lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/lib/popper/popper.min.js') }}"></script>
+    <!-- <script src="{{ asset('/lib/Ajax.JSONRequest/jsonp.js') }}"></script> -->
     <!-- JavaScript Boostrap plugin -->
     <script src="{{ asset('/lib/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/js/skillGraph.js') }}"></script>
+    <script src="{{ asset('/js/script.js') }}"></script>
 </body>
 </html>

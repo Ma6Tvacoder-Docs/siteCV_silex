@@ -119,6 +119,44 @@ $app->delete('/api/loisir/{id}', "MicroCMS\Controller\ApiController::deleteLoisi
 ->bind('api_loisir_delete');
 
 // ======================================
+// CONCERNE COMPETENCE
+
+// Loisirs Page
+$app->get('/competence', "MicroCMS\Controller\LoisirController::competenceAction")
+->bind('competence');
+
+// Loisirs Detaile
+$app->get('/competence/{id}', "MicroCMS\Controller\LoisirController::competencesingleAction")
+->bind('competence_single');
+
+// Add a new experience
+$app->match('/admin/competence/add', "MicroCMS\Controller\AdminController::addCompetenceAction")
+->bind('admin_competence_add');
+
+// Edit an existing competence
+$app->match('/admin/competence/{id}/edit', "MicroCMS\Controller\AdminController::editCompetenceAction")
+->bind('admin_competence_edit');
+
+// Remove an competence
+$app->get('/admin/competence/{id}/delete', "MicroCMS\Controller\AdminController::deleteCompetenceAction")
+->bind('admin_competence_delete');
+// API : get all experiences
+$app->get('/api/competence', "MicroCMS\Controller\ApiController::getCompetencesAction")
+->bind('api_competences');
+
+// API : get an competence
+$app->get('/api/competence/{id}', "MicroCMS\Controller\ApiController::getCompetenceAction")
+->bind('api_competence');
+
+// API : create an competence
+$app->post('/api/competence/add', "MicroCMS\Controller\ApiController::addCompetenceAction")
+->bind('api_competence_add');
+
+// API : remove an competence
+$app->delete('/api/competence/{id}', "MicroCMS\Controller\ApiController::deleteCompetenceAction")
+->bind('api_competence_delete');
+
+// ======================================
 // CONCERNE PERSO
 
 // page des infos Perso

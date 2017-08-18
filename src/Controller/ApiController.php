@@ -6,6 +6,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use MicroCMS\Domain\Article;
 use MicroCMS\Domain\Experience;
+use MicroCMS\Domain\Competence;
 
 class ApiController {
 
@@ -186,4 +187,93 @@ class ApiController {
             );
         return $data;
     }
+    /**
+     * API competences controller.
+     *
+     * @param Application $app Silex application
+     *
+     * @return All competences in JSON format
+     */
+    public function getCompetencesAction( Application $app) {
+        $competences = $app['dao.competence']->findAll();
+        // Convert an array of objects ($articles) into an array of associative arrays ($responseData)
+        $responseData = array();
+        foreach ($competences as $competence) {
+            $responseData[] = $this->buildCompetenceArray( $competence );
+        }
+        // Create and return a JSON response
+        return $app->json($responseData);
+    }
+
+    /**
+     * API competence details controller.
+     *
+     * @param integer $id Competence id
+     * @param Application $app Silex application
+     *
+     * @return Competence details in JSON format
+     */
+    public function getCompetenceAction($id, Application $app) {
+        $competence = $app['dao.competence']->find($id);
+        $responseData = $this->buildCompetenceArray($competence);
+        // Create and return a JSON response
+        return $app->json($responseData);
+    }
+
+    /**
+     * API create competence controller.
+     *
+     * @param Request $request Incoming request
+     * @param Application $app Silex application
+     *
+     * @return Competence details in JSON format
+     */
+    public function addCompetenceAction( Request $request, Application $app ) {
+        // Check request parameters
+        if (!$request->request->has('title')) {
+            return $app->json('Missing required parameter: title', 400);
+        }
+        if (!$request->request->has('content')) {
+            return $app->json('Missing required parameter: content', 400);
+        }
+        // Build and save the new competence
+        $competence = new Competence();
+        $competence->setNom($request->request->get('comp_nom'));
+        $competence->setValeur($request->request->get('comp_valeur'));
+        $competence->setLogo($request->request->get('comp_logo'));
+        $app['dao.competence']->save($competence);
+        $responseData = $this->buildCompetenceArray($competence);
+        return $app->json($responseData, 201);  // 201 = Created
+    }
+
+    /**
+     * API delete competence controller.
+     *
+     * @param integer $id Competence id
+     * @param Application $app Silex application
+     */
+    public function deleteCompetenceAction($id, Application $app) {
+
+        // Delete the competence
+        $app['dao.competence']->delete($id);
+        return $app->json('No Content', 204);  // 204 = No content
+    }
+
+    /**
+     * Converts an Competence object into an associative array for JSON encoding
+     *
+     * @param Competence $competence Competence object
+     *
+     * @return array Associative array whose fields are the competence properties.
+     */
+  private function buildCompetenceArray( Competence $competence) {
+    $data  = array(
+      'id' => $competence->getId(),
+      'categorie' => $competence->getCategorie(),
+      'nom' => $competence->getNom(),
+      'valeur' => $competence->getValeur(),
+      'logo' => $competence->getLogo()
+    );
+    return $data;
+  }
 }

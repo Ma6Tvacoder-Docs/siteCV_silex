@@ -13,10 +13,11 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
       <ul class="nav nav-tabs nav-justified">
-        <li><a href="#persos" data-toggle="tab">Infos_Perso</a></li>
+        <li ><a href="#persos" data-toggle="tab">Infos_Perso</a></li>
         <li><a href="#portfolios" data-toggle="tab">Portfolio</a></li>
-        <li class="active"><a href="#experiences" data-toggle="tab">Experiences</a></li>
+        <li><a href="#experiences" data-toggle="tab">Experiences</a></li>
         <li><a href="#loisirs" data-toggle="tab">Loisirs</a></li>
+        <li><a class="active" href="#competences" data-toggle="tab">Competences</a></li>
         <li><a href="#articles" data-toggle="tab">Articles</a></li>
         <li><a href="#comments" data-toggle="tab">Comments</a></li>
         <li><a href="#users" data-toggle="tab">Users</a></li>
@@ -72,7 +73,7 @@
         {% endif %}
         <a href="{{ path('admin_article_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add article</button></a>
     </div>
-      <div class="tab-pane fade in active adminTable" id="experiences">
+      <div class="tab-pane fade in adminTable" id="experiences">
           {% if experiences %}
           <div class="table-responsive">
               <table class="table table-hover table-condensed">
@@ -135,6 +136,58 @@
           {% endif %}
           <a href="{{ path('admin_experience_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter une experiences</button></a>
       </div>
+      <div class="tab-pane fade in active adminTable" id="competences">
+          {% if competences %}
+          <div class="table-responsive">
+              <table class="table table-hover table-condensed">
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Categorie</th>
+                          <th>Nom</th>
+                          <th>Valeur</th>
+                          <th>Logo</th>  <!-- Actions column -->
+                          <th></th>
+                      </tr>
+                  </thead>
+                  {% for competence in competences %}
+                  <tr>
+                      <td>{{ competence.id }}</td>
+                      <td>{{ competence.categorie }}</td>
+                      <td>{{ competence.nom }}</td>
+                      <td>{{ competence.valeur }}</td>
+                      <td><i class="fa {{ competence.logo }}" aria-hidden="true"></i></td>
+                      <td>
+                          <a href="{{ path('admin_competence_edit', { 'id': competence.id }) }}" class="btn btn-info btn-xs" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                          <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#competenceDialog{{ competence.id }}"><span class="glyphicon glyphicon-remove"></span>
+                          </button>
+                          <div class="modal fade" id="competenceDialog{{ competence.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          <h4 class="modal-title" id="myModalLabel">Confirmation needed</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                          Voulez vous réellement effecé cette expèrience ?
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                          <a href="{{ path('admin_competence_delete', { 'id': competence.id }) }}" class="btn btn-danger">Confirm</a>
+                                      </div>
+                                  </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                          </div><!-- /.modal -->
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </table>
+          </div>
+          {% else %}
+          <div class="alert alert-warning">Nous n'avons pas trouvé d'competences.</div>
+          {% endif %}
+          <a href="{{ path('admin_competence_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter une competences</button></a>
+      </div>
       <div class="tab-pane fade in adminTable" id="portfolios">
         {% if portfolios %}
           <div class="table-responsive">
@@ -192,7 +245,7 @@
           {% endif %}
           <a href="{{ path('admin_portfolio_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add article</button></a>
       </div>
-      <div class="tab-pane fade in adminTable" id="persos">
+      <div class="tab-pane fade in  adminTable" id="persos">
         {% if persos %}
           <div class="table-responsive">
             <table class="table table-hover table-condensed">
@@ -205,6 +258,8 @@
                   <th><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</th>
                   <th><i class="fa fa-github" aria-hidden="true"></i> github</th>
                   <th><i class="fa fa-codepen" aria-hidden="true"></i> codepen</th>
+                  <th><i class="fa fa-linkedin" aria-hidden="true"></i> linkein</th>
+                  <th><i class="fa fa-twitter" aria-hidden="true"></i> twitter</th>
                   <th>Telephone</th>
                   <th>Adresse</th>
                   <th></th>  <!-- Actions column -->
@@ -219,9 +274,12 @@
                     <div class="img-thumbnail">
                       <img src="{{ perso.img }}" alt="{{ perso.nom }} {{ perso.prenom }}"></td>
                     </div>
-                  <td>{{ perso.facebook }}</td>
-                  <td>{{ perso.github }}</td>
-                  <td>{{ perso.codepen }}</td>
+
+                  <td><a href="{{ perso.facebook }}" target=_blank>{{ perso.facebook }}</a></td>
+                  <td><a href="{{ perso.github }}" target=_blank>{{ perso.github }}</a></td>
+                  <td><a href="{{ perso.codepen }}" target=_blank>{{ perso.codepen }}</a></td>
+                  <td><a href="{{ perso.linkedin }}" target=_blank>{{ perso.linkedin }}</a></td>
+                  <td><a href="{{ perso.twitter }}" target=_blank>{{ perso.twitter }}</a></td>
                   <td>{{ perso.tel }}</td>
                   <td>{{ perso.adresse | truncate(60) }}</td>
                   <td>

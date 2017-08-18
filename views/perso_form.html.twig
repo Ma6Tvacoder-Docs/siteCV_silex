@@ -97,6 +97,30 @@
         </div>
     </div>
     <div class="form-group">
+        {{ form_label(persoForm.linkedin, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(persoForm.linkedin) }}
+            {{ form_widget(persoForm.linkedin, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(persoForm.twitter, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(persoForm.twitter) }}
+            {{ form_widget(persoForm.twitter, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
         {{ form_label(persoForm.tel, null, { 'label_attr':  {
             'class': 'col-sm-4 control-label'
         }}) }}

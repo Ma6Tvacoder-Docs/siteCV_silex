@@ -30,6 +30,12 @@ class Perso
     // Github
     private $github;
 
+    // Github
+    private $linkedin;
+
+    // Github
+    private $twitter;
+
     // Prenom
     private $prenom;
 
@@ -66,6 +72,20 @@ class Perso
     }
     public function getCodepen(){
       return $this->codepen;
+    }
+    public function setLinkedin( $linkedin ){
+      $this->linkedin = $linkedin;
+      return $this;
+    }
+    public function getLinkedin(){
+      return $this->linkedin;
+    }
+    public function setTwitter( $twitter ){
+      $this->twitter = $twitter;
+      return $this;
+    }
+    public function getTwitter(){
+      return $this->twitter;
     }
     public function setPoste( $poste ){
       $this->poste = $poste;

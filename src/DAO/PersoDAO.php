@@ -55,6 +55,8 @@ class PersoDAO extends DAO
             'perso_facebook' => $perso->getFacebook(),
             'perso_github' => $perso->getGithub(),
             'perso_codepen' => $perso->getCodepen(),
+            'perso_linkedin' => $perso->getLinkedin(),
+            'perso_twitter' => $perso->getTwitter(),
             'perso_tel' => $perso->getTel(),
             'perso_adresse' => $perso->getAdresse(),
             );
@@ -96,6 +98,8 @@ class PersoDAO extends DAO
         $perso->setFacebook($row['perso_facebook']);
         $perso->setGithub($row['perso_github']);
         $perso->setCodepen($row['perso_codepen']);
+        $perso->setLinkedin($row['perso_linkedin']);
+        $perso->setTwitter($row['perso_twitter']);
         $perso->setImg($row['perso_img']);
         $perso->setTel($row['perso_tel']);
         $perso->setAdresse($row['perso_adresse']);

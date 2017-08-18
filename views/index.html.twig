@@ -3,33 +3,72 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<!-- Header -->
+<header class="intro-header">
+  <div class="container">
+    <div class="intro-message">
+      {% for perso in persos %}
+        <h1>{{ perso.nom }} {{ perso.prenom }}</h1>
+        <h3>{{ perso.poste }}</h3>
+        <hr class="intro-divider">
+        <ul class="list-inline intro-social-buttons">
+          <li class="list-inline-item">
+            <a href="{{ perso.github }}" target="_blank" title="GitHub" class="btn btn-secondary btn-lg">
+              <i class="fa fa-github fa-fw"></i>
+              <!-- <span class="network-name">Github</span> -->
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="{{ perso.codepen }}" target="_blank" title="Codepen" class="btn btn-secondary btn-lg">
+              <i class="fa fa-codepen fa-fw"></i>
+              <!-- <span class="network-name">Github</span> -->
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="{{ perso.linkedin }}" target="_blank" title="LinkedIn" class="btn btn-secondary btn-lg">
+              <i class="fa fa-linkedin fa-fw"></i>
+              <!-- <span class="network-name">Linkedin</span> -->
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="{{ perso.facebook }}" target="_blank" title="Facebook" class="btn btn-secondary btn-lg">
+              <i class="fa fa-facebook fa-fw"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="{{ perso.twitter }}" target="_blank" title="twitter" class="btn btn-secondary btn-lg">
+              <i class="fa fa-twitter fa-fw"></i>
+            </a>
+          </li>
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
+</header>
 
-  <h1 class="row col-md-12">Articles</h1>
-    {% for article in articles %}
-      <article class="row col-md-6 tuile">
-          <h2><i class="fa fa-star" aria-hidden="true"></i> <a class="articleTitle" href="{{ path('article', { 'id': article.id }) }}">{{ article.title }}</a></h2>
-          <p>{{ article.content }}</p>
-      </article>
-    {% endfor %}
-  <h1 class="row col-md-12">Experiences</h1>
-  {% for experience in experiences %}
-    <article class="row col-md-6 tuile">
-        <h2><a class="articleTitle" href="{{ path('experience', { 'id': experience.id }) }}">{{ experience.poste }}</a></h2>
-        <p><em>{{ experience.debut }}</em> / <em>{{ experience.fin }}</em></p>
-        <div class="col-md-12">
-          <img src="{{ experience.img }}" title="{{ experience.title }}" class="col-md-8 col-md-offset-2 img-thumbnail" alt="{{ experience.title }}">
-        </div>
-        <h3>{{ experience.content }}</h3>
-    </article>
-  {% endfor %}
-  <h1 class="row col-md-12">Loisirs</h1>
-  {% for loisir in loisirs %}
-    <article class="row col-md-6 tuile">
-        <h2><a class="articleTitle" href="{{ path('loisir', { 'id': loisir.id }) }}">{{ loisir.title }}</a></h2>
-        <p>{{ loisir.content }}</p>
-    </article>
-  {% endfor %}
-  <h1 class="row col-md-12">Perso</h1>
+<!-- Page Content -->
+<section id="competences" class="content-section-a">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 ml-auto">
+        <hr class="section-heading-spacer">
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Competences</h2>
+      </div>
+      <div id="skillGraph0" class="col-lg-4 mr-auto">
+        <!-- <div id="skillGraph"></div> -->
+        <!-- <img class="img-fluid" src="img/ipad.png" alt=""> -->
+      </div>
+      <div id="skillGraph1" class="col-lg-4 mr-auto">
+        <!-- <div id="skillGraph"></div> -->
+        <!-- <img class="img-fluid" src="img/ipad.png" alt=""> -->
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+</section>
+<h2 class="row col-md-12">Perso</h2>
   {% for perso in persos %}
     <article class="row col-md-6 tuile">
         <h2><a class="articleTitle" href="{{ path('perso', { 'id': perso.id }) }}">{{ perso.nom }} {{ perso.prenom }}</a></h2>
@@ -40,7 +79,41 @@
         <p>{{ perso.tel }}</p>
     </article>
   {% endfor %}
-  <h1 class="row col-md-12">Portfolio</h1>
+  <h2 class="row col-md-12">Competence</h2>
+    {% for competence in competences %}
+      <article class="row col-md-6 tuile">
+          <h2><i class="fa fa-rebel" aria-hidden="true"></i> <a class="articleTitle" href="{{ path('competence', { 'id': competence.id }) }}">{{ competence.nom }}</a></h2>
+          <p>{{ competence.valeur }}</p>
+          <p><i class="fa {{ competence.logo }} fa-5x" aria-hidden="true"></i></p>
+      </article>
+    {% endfor %}
+  <h2 class="row col-md-12">Articles</h2>
+    {% for article in articles %}
+      <article class="row col-md-6 tuile">
+          <h2><i class="fa fa-star" aria-hidden="true"></i> <a class="articleTitle" href="{{ path('article', { 'id': article.id }) }}">{{ article.title }}</a></h2>
+          <p>{{ article.content }}</p>
+      </article>
+    {% endfor %}
+  <h2 class="row col-md-12">Experiences</h2>
+  {% for experience in experiences %}
+    <article class="row col-md-6 tuile">
+        <h2><a class="articleTitle" href="{{ path('experience', { 'id': experience.id }) }}">{{ experience.poste }}</a></h2>
+        <p><em>{{ experience.debut }}</em> / <em>{{ experience.fin }}</em></p>
+        <div class="col-md-12">
+          <img src="{{ experience.img }}" title="{{ experience.title }}" class="col-md-8 col-md-offset-2 img-thumbnail" alt="{{ experience.title }}">
+        </div>
+        <h3>{{ experience.content }}</h3>
+    </article>
+  {% endfor %}
+  <h2 class="row col-md-12">Loisirs</h2>
+  {% for loisir in loisirs %}
+    <article class="row col-md-6 tuile">
+        <h2><a class="articleTitle" href="{{ path('loisir', { 'id': loisir.id }) }}">{{ loisir.title }}</a></h2>
+        <p>{{ loisir.content }}</p>
+    </article>
+  {% endfor %}
+
+  <h2 class="row col-md-12">Portfolio</h2>
   {% for portfolio in portfolios %}
     <article class="row col-md-6 tuile">
         <h2><a class="articleTitle" href="{{ path('portfolio', { 'id': portfolio.id }) }}">{{ portfolio.name }}</a></h2>

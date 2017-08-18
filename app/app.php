@@ -81,6 +81,9 @@ $app['dao.perso'] = function ($app) {
 $app['dao.portfolio'] = function ($app) {
     return new MicroCMS\DAO\PortfolioDAO( $app['db'] );
 };
+$app['dao.competence'] = function ($app) {
+    return new MicroCMS\DAO\CompetenceDAO( $app['db'] );
+};
 
 // Register error handler
 // $app->error(function (\Exception $e, Request $request, $code) use ($app) {

@@ -10,6 +10,7 @@ use MicroCMS\Domain\User;
 use MicroCMS\Domain\Perso;
 use MicroCMS\Domain\Portfolio;
 use MicroCMS\Domain\Loisir;
+use MicroCMS\Domain\Competence;
 use MicroCMS\Form\Type\ArticleType;
 use MicroCMS\Form\Type\LoisirType;
 use MicroCMS\Form\Type\ExperienceType;
@@ -17,6 +18,7 @@ use MicroCMS\Form\Type\PersoType;
 use MicroCMS\Form\Type\PortfolioType;
 use MicroCMS\Form\Type\CommentType;
 use MicroCMS\Form\Type\UserType;
+use MicroCMS\Form\Type\CompetenceType;
 use MicroCMS\Form\Type\ExperienceController;
 
 class AdminController {
@@ -34,6 +36,7 @@ class AdminController {
         $loisirs = $app['dao.loisir']->findAll();
         $persos = $app['dao.perso']->findAll();
         $portfolios = $app['dao.portfolio']->findAll();
+        $competences = $app['dao.competence']->findAll();
         // $experiences = $app['dao.experiences']->findAll();
         return $app['twig']->render('admin.html.twig', array(
             'articles' => $articles,
@@ -42,7 +45,8 @@ class AdminController {
             'experiences' => $experiences,
             'loisirs' => $loisirs,
             'persos' => $persos,
-            'portfolios' => $portfolios
+            'portfolios' => $portfolios,
+            'competences' => $competences
           ));
     }
 
@@ -198,6 +202,50 @@ class AdminController {
         // Delete the article
         $app['dao.perso']->delete($id);
         $app['session']->getFlashBag()->add('success', 'Ces information personnels ont été supprimé.');
+        // Redirect to admin home page
+        return $app->redirect($app['url_generator']->generate('admin'));
+    }
+    public function addCompetenceAction(Request $request, Application $app) {
+        $competence = new Competence();
+        $competenceForm = $app['form.factory']->create(CompetenceType::class, $competence);
+        $competenceForm->handleRequest($request);
+        if ($competenceForm->isSubmitted() && $competenceForm->isValid()) {
+            $app['dao.competence']->save($competence);
+            $app['session']->getFlashBag()->add('success', 'The competence was successfully created.');
+        }
+        return $app['twig']->render('competence_form.html.twig', array(
+            'title' => 'Nouvelles informations competence',
+            'competenceForm' => $competenceForm->createView()));
+    }
+    /**
+     * Edit article controller.
+     *
+     * @param integer $id Article id
+     * @param Request $request Incoming request
+     * @param Application $app Silex application
+     */
+    public function editCompetenceAction($id, Request $request, Application $app) {
+        $competence = $app['dao.competence']->find($id);
+        $competenceForm = $app['form.factory']->create(CompetenceType::class, $competence);
+        $competenceForm->handleRequest($request);
+        if ($competenceForm->isSubmitted() && $competenceForm->isValid()) {
+            $app['dao.competence']->save($competence);
+            $app['session']->getFlashBag()->add('success', 'The competence was successfully updated.');
+        }
+        return $app['twig']->render('competence_form.html.twig', array(
+            'title' => 'Editer ces informations competencennels',
+            'competenceForm' => $competenceForm->createView() ));
+    }
+    /**
+     * Delete article controller.
+     *
+     * @param integer $id Article id
+     * @param Application $app Silex application
+     */
+    public function deleteCompetenceAction($id, Application $app) {
+        // Delete the article
+        $app['dao.competence']->delete($id);
+        $app['session']->getFlashBag()->add('success', 'Ces competence ont été supprimé.');
         // Redirect to admin home page
         return $app->redirect($app['url_generator']->generate('admin'));
     }

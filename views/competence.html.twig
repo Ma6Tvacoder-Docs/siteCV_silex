@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h1>Competences</h1>
+  {% for competence in competences %}
+    <article>
+        <h2><a class="articleTitle" href="{{ path('competence', { 'id': competence.id }) }}">{{ competence.title }}</a></h2>
+        <p>{{ competence.content }}</p>
+    </article>
+  {% endfor %}
+
+{% endblock %}
