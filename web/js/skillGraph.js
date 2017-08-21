@@ -1,4 +1,4 @@
-function skillGraph( skills, target ){
+function skillGraph( skills, target, color ){
   var pentagonIndex = 0;
   var valueIndex = 0;
   var width = 0;
@@ -32,11 +32,15 @@ function skillGraph( skills, target ){
 
       /*** LABEL ***/
 
-      color = "hsl("+hue[pentagonIndex]+", 100%, 50%)";
+      // Definis dans les argunments
+      // color = "hsl("+hue[pentagonIndex]+", 100%, 50%)";
+
+      // ctx.fillStyle = color;
       ctx.fillStyle = color;
       ctx.fillText(skills[pentagonIndex].header, width/2, 15);
 
-      ctx.font="13px Monospace";
+      // ctx.font="13px Monospace";
+      ctx.font="20px Monospace";
 
       /*** PENTAGON BACKGROUND ***/
 
@@ -46,6 +50,7 @@ function skillGraph( skills, target ){
         xy = getXY(i, 0.3);
         colorJitter = 25 + theta*i*2;
         color = "hsl("+hue[pentagonIndex]+",100%," + colorJitter + "%)";
+
         ctx.fillStyle = color;
         ctx.strokeStyle = color;
         ctx.moveTo(0.5*width, 0.5*height); //center
@@ -54,7 +59,11 @@ function skillGraph( skills, target ){
         ctx.lineTo(xy.x, xy.y);
         xy = getXY(i, 0.37);
         console.log();
-        ctx.fillText(skills[ pentagonIndex].captions[valueIndex],xy.x, xy.y +5);
+
+        var cooleur = '#fff';
+        ctx.fillStyle = cooleur;
+        ctx.fillText(skills[ pentagonIndex].captions[valueIndex],xy.x, xy.y + 5);
+        ctx.fillStyle = color;
         valueIndex++;
         ctx.closePath();
         ctx.fill();

@@ -54,8 +54,9 @@ $(function() {
       //process de skill graph pour rendre Autant de graph qu'i y a de champs competences
       for (var i = 0; i < competences.skills.length; i++) {
         var domaine = "#skillGraph" + i;
+        var couleur = '#61EDB3'
         // console.log(domaine)
-        skillGraph([competences.skills[i]], domaine)
+        skillGraph([competences.skills[i]], domaine, couleur)
       }
       // skillGraph([competences.skills[0]], "#competences")
       // skillGraph([competences.skills[1]], "#competences")

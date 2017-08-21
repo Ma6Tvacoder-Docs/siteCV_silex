@@ -1,14 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Dr+Sugiyama');
+
 /* Skill Set by Lopis -> https://codepen.io/lopis/pen/ELxnA */
+
+/*font-family: 'Dr Sugiyama', cursive;*/
+
+
+
 .pentagon {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   margin: auto;
   padding: 3px 3px 28px 3px;
   display:inline-block;
+}
+.pentagon::after {
+  margin: auto; */
+  right: 0;
+  border-radius: 50%;
+  content: "";
+  width: 158px;
+  height: 13px;
+  background-color: rgba(0,0,0,0.1);
+  bottom: 0px;
+  margin: auto;
+  left: 48%;
+  /* transform: rotate(45deg); */
+  position: absolute;
+  z-index: -1;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+  z-index: 1000;
+}
+.pentagon canvas{
+  position: relative;
+  animation-name: balance;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  bottom: 0;
 }
 #c {
   margin: auto;
 }
 #competences {
   height:80vh;
+  background: Greyblue;
+  background: #1e3c41;
+  background: -moz-linear-gradient(top, #1e3c41 0%, #1e3c41 45%, #4a94a0 70%, #4a94a0 84%, #1e3c41 100%);
+  background: -webkit-linear-gradient(to bottom, #1e3c41 0%,#1e3c41 26%,#4a94a0 79%,#4a94a0 83%,#1e3c41 100%);
+  background:linear-gradient(to bottom, #1e3c41 0%,#1e3c41 26%,#4a94a0 79%,#4a94a0 83%,#1e3c41 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e3c41', endColorstr='#1e3c41',GradientType=0 );
+}
+@@keyframes balance {
+  0%{
+    bottom:0;
+  }
+  50%{
+    bottom:150px;
+  }
+  100%{
+    bottom:0;
+  }
 }
