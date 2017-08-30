@@ -5,67 +5,105 @@
 {% block content %}
 <!-- Header -->
 <header class="intro-header" id="bumper">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/IjGdi7z_B4U?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1" frameborder="0" allowfullscreen></iframe>
+  <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/IjGdi7z_B4U?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1" frameborder="0" allowfullscreen></iframe> -->
+  <svg id="svg"></svg>
   <div class="container">
     <div class="intro-message">
       {% for perso in persos %}
-        <h1>{{ perso.nom }} {{ perso.prenom }}</h1>
-        <h3>{{ perso.poste }}</h3>
+        <h1><span class='ombre'>{{ perso.nom }} {{ perso.prenom }}</span>{{ perso.nom }} {{ perso.prenom }}</h1>
+        <h3><span class='ombre'>{{ perso.poste }}</span>{{ perso.poste }}</h3>
         <hr class="intro-divider">
         <ul class="list-inline intro-social-buttons">
           <li class="list-inline-item">
-            <a href="{{ perso.github }}" target="_blank" title="GitHub" class="btn btn-secondary btn-lg">
+            <a href="{{ perso.github }}" target="_blank" rel="noopener" title="GitHub" class="btn btn-secondary btn-lg">
               <i class="fa fa-github fa-fw"></i>
               <!-- <span class="network-name">Github</span> -->
             </a>
           </li>
           <li class="list-inline-item">
-            <a href="{{ perso.codepen }}" target="_blank" title="Codepen" class="btn btn-secondary btn-lg">
+            <a href="{{ perso.codepen }}" target="_blank" rel="noopener" title="Codepen" class="btn btn-secondary btn-lg">
               <i class="fa fa-codepen fa-fw"></i>
               <!-- <span class="network-name">Github</span> -->
             </a>
           </li>
           <li class="list-inline-item">
-            <a href="{{ perso.linkedin }}" target="_blank" title="LinkedIn" class="btn btn-secondary btn-lg">
+            <a href="{{ perso.linkedin }}" target="_blank" rel="noopener" title="LinkedIn" class="btn btn-secondary btn-lg">
               <i class="fa fa-linkedin fa-fw"></i>
               <!-- <span class="network-name">Linkedin</span> -->
             </a>
           </li>
           <li class="list-inline-item">
-            <a href="{{ perso.facebook }}" target="_blank" title="Facebook" class="btn btn-secondary btn-lg">
+            <a href="{{ perso.facebook }}" target="_blank" rel="noopener" title="Facebook" class="btn btn-secondary btn-lg">
               <i class="fa fa-facebook fa-fw"></i>
             </a>
           </li>
           <li class="list-inline-item">
-            <a href="{{ perso.twitter }}" target="_blank" title="twitter" class="btn btn-secondary btn-lg">
+            <a href="{{ perso.twitter }}" target="_blank" rel="noopener" title="twitter" class="btn btn-secondary btn-lg">
               <i class="fa fa-twitter fa-fw"></i>
             </a>
           </li>
         </ul>
+        <hr class="intro-divider">
+
       {% endfor %}
     </div>
   </div>
 </header>
 
-<!-- Page Content -->
-<section id="competences" class="content-section-a">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 ml-auto">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h2 class="section-heading">Competences</h2>
+<!-- Portfolio -->
+<section id="portfolio">
+  <div class="row justify-content-md-center">
+    <div class="col-sm-8 col-md-6">
+      <ul class="nav nav-tabs nav-justified">
+        <li class="col"><a href="#3d" data-toggle="tab">Espace 3D</a></li>
+        <li class="col"><a href="#illustrations" data-toggle="tab">illustration</a></li>
+        <li class="col"><a href="#web" data-toggle="tab">web</a></li>
+        <li class="col"><a href="#Jeux_vidéos" data-toggle="tab">Jeux vidéos</a></li>
+      </ul>
+    </div>
+  </div>
+  <section id="view" class="container justify-content-md-center">
+    <div class="tab-content" id="admin">
+      <div class="tab-pane fade in adminTable" id="3d">
+
+        <h1>Espace 3D</h1>
+
       </div>
-      <div id="skillGraph0" class="col-lg-4 mr-auto">
-        <!-- <div id="skillGraph"></div> -->
-        <!-- <img class="img-fluid" src="img/ipad.png" alt=""> -->
+      <div class="tab-pane fade in adminTable" id="illustrations">
+
+        <h1>Illustrations</h1>
+
       </div>
-      <div id="skillGraph1" class="col-lg-4 mr-auto">
-        <!-- <div id="skillGraph"></div> -->
-        <!-- <img class="img-fluid" src="img/ipad.png" alt=""> -->
+      <div class="tab-pane fade in adminTable" id="web">
+
+        <h1>Travail contenus Web</h1>
+
+      </div>
+      <div class="tab-pane fade in adminTable" id="Jeux_vidéos">
+
+        <h1>Jeux vidéos</h1>
+
       </div>
     </div>
 
+  </section>
+</section>
+
+<!-- Page Content -->
+<section id="competences" class="gradient content-section-a">
+  <div class="container">
+    <div class="row">
+      <div id="etoiles"></div>
+      <div class="" id="backSkills">
+        <div class="pink80"></div>
+      </div>
+      <div class="col-lg-12 ml-auto">
+        <div class="clearfix"></div>
+        <h2 class="section-heading" class="tle_shadow"><span class="ombre">Competences</span>Competences</h2>
+      </div>
+      <div id="skillGraph0" class="skillGraphi col-lg-4 mr-auto"></div>
+      <div id="skillGraph1" class="skillGraphi col-lg-4 mr-auto"></div>
+    </div>
   </div>
   <!-- /.container -->
 </section>

@@ -1,4 +1,4 @@
-function skillGraph( skills, target, color ){
+function skillGraph( skills, target, color, factor ){
   var pentagonIndex = 0;
   var valueIndex = 0;
   var width = 0;
@@ -18,7 +18,7 @@ function skillGraph( skills, target, color ){
   if( $( target ).length !== 0 ){
     for (var s in skills) {
       $(target).append('<div class="pentagon"><div class="header"></div><canvas class="pentCanvas"/></div>');
-      hue[s] = (hueOffset + s * 255/skills.length) % 255;
+      hue[s] = (hueOffset + s * 255/skills.length) % 255 + factor;
     }
 
     $( target+" .pentagon" ).each(function(index){
@@ -27,7 +27,7 @@ function skillGraph( skills, target, color ){
       var ctx = $(this).find('canvas')[0].getContext('2d');
       ctx.canvas.width = width;
       ctx.canvas.height = height;
-      ctx.font="15px Monospace";
+      ctx.font="35px Permanent Marker";
       ctx.textAlign="center";
 
       /*** LABEL ***/
@@ -37,7 +37,7 @@ function skillGraph( skills, target, color ){
 
       // ctx.fillStyle = color;
       ctx.fillStyle = color;
-      ctx.fillText(skills[pentagonIndex].header, width/2, 15);
+      ctx.fillText(skills[pentagonIndex].header, width/2, 25);
 
       // ctx.font="13px Monospace";
       ctx.font="20px Monospace";
@@ -93,5 +93,8 @@ function skillGraph( skills, target, color ){
       pentagonIndex++;
     });
   }
-
 }
+$('#competences').click(function(){
+  $(this).find( $('.pentCanvas') ).remove()
+
+})

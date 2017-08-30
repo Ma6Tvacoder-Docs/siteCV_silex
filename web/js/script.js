@@ -4,15 +4,15 @@ class SkillModel{
     // this.datas = dataTab
     this.categories = [];
     this.skills = []
-    console.log(dataTab)
+    // console.log(dataTab)
 
     // PRemier tri des infos pour recup les categories
     for (var index in dataTab) {
       // console.log(dataTab[ index ].categorie);
       var check = $.inArray( dataTab[ index ].categorie, this.categories )
       if( this.categories.length !== 0 && check == -1){
-          console.log('CAT : ' + dataTab[ index ].categorie)
-          console.log('return : '+check)
+          // console.log('CAT : ' + dataTab[ index ].categorie)
+          // console.log('return : '+check)
           this.categories.push( dataTab[ index ].categorie )
       } else if ( this.categories.length == 0 ){
         this.categories.push( dataTab[ index ].categorie )
@@ -27,11 +27,11 @@ class SkillModel{
     }
     for (var index in dataTab) {
       for (var j = 0; j < this.skills.length; j++) {
-        console.log(this.skills[j])
+        // console.log(this.skills[j])
         if(this.skills[j].header == dataTab[index].categorie){
           this.skills[j].captions.push(dataTab[index].nom)
           this.skills[j].values.push(dataTab[index].valeur)
-          console.log('hell')
+          // console.log('hell')
         }
       }
     }
@@ -50,13 +50,17 @@ $(function() {
       })
 
       var competences = new SkillModel( datas )
-      console.log( competences.skills )
+      // console.log( competences.skills )
       //process de skill graph pour rendre Autant de graph qu'i y a de champs competences
+
+      var couleur = '#FF3D00',
+          facteur = 75
+
       for (var i = 0; i < competences.skills.length; i++) {
-        var domaine = "#skillGraph" + i;
-        var couleur = '#61EDB3'
+        var domaine = "#skillGraph" + i
         // console.log(domaine)
-        skillGraph([competences.skills[i]], domaine, couleur)
+        skillGraph([competences.skills[i]], domaine, couleur, facteur)
+        facteur += facteur
       }
       // skillGraph([competences.skills[0]], "#competences")
       // skillGraph([competences.skills[1]], "#competences")
@@ -66,6 +70,4 @@ $(function() {
 
 });
 
-//
-// // console.log( cats )
-// console.log('hello')
+// Gestion de la couleur background du bumper

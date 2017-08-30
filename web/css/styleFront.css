@@ -2,74 +2,17 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 /* Skill Set by Lopis -> https://codepen.io/lopis/pen/ELxnA */
 
-/*font-family: 'Dr Sugiyama', cursive;*/
-
-
-
-.pentagon {
-  width: 500px;
-  height: 500px;
-  margin: auto;
-  padding: 3px 3px 28px 3px;
-  display:inline-block;
-}
-.pentagon::after {
-  margin: auto; */
-  right: 0;
-  border-radius: 50%;
-  content: "";
-  width: 158px;
-  height: 13px;
-  background-color: rgba(0,0,0,0.1);
-  bottom: 0px;
-  margin: auto;
-  left: 48%;
-  /* transform: rotate(45deg); */
-  position: absolute;
-  z-index: -1;
-  -webkit-filter: drop-shadow(5px 5px 5px #222);
-  filter: drop-shadow(5px 5px 5px #222);
-  z-index: 1000;
-}
-.pentagon canvas{
-  position: relative;
-  animation-name: balance;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  bottom: 0;
-}
-#c {
-  margin: auto;
-}
-#competences {
-  height:80vh;
-  background: Greyblue;
-  background: #1e3c41;
-  background: -moz-linear-gradient(top, #1e3c41 0%, #1e3c41 45%, #4a94a0 70%, #4a94a0 84%, #1e3c41 100%);
-  background: -webkit-linear-gradient(to bottom, #1e3c41 0%,#1e3c41 26%,#4a94a0 79%,#4a94a0 83%,#1e3c41 100%);
-  background:linear-gradient(to bottom, #1e3c41 0%,#1e3c41 26%,#4a94a0 79%,#4a94a0 83%,#1e3c41 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e3c41', endColorstr='#1e3c41',GradientType=0 );
-}
-@@keyframes balance {
-  0%{
-    bottom:0;
-  }
-  50%{
-    bottom:150px;
-  }
-  100%{
-    bottom:0;
-  }
-}
 /* parametrage du header */
-#bumper iframe{
+/*#bumper iframe{
   left: 0;
   width: 100%;
   height: 110%;
   position: absolute;
   top: 0;
   z-index: -2;
+}*/
+#bumper{
+  overflow: hidden;
 }
 .intro-header{
   background: none;
@@ -77,12 +20,406 @@
 h1, h2, h3, h4 {
   font-family: 'Permanent Marker', cursive;
 }
-.intro-message h1{
-  background-position: center;
-  background-image: url(https://media.giphy.com/media/nrXif9YExO9EI/giphy.gif);
-  background-size: cover;
-  color: transparent;
-  -moz-background-clip: text;
-  -webkit-background-clip: text;
+.masked{
+	background: url(/bgclip/img/paint.png) repeat, white;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	-webkit-animation-name: masked-animation;
+	-webkit-animation-duration: 40s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+@-webkit-keyframes masked-animation {
+	0% {background-position: left bottom;}
+	100% {background-position: right bottom;}
+}
+.intro-message{
+  padding-top:15%;
+  padding-bottom:15%;
+  }
+  .intro-message h1, h1 .ombre{
+    font-size: 5.1rem;
+  }
+  .intro-message h3, h3 .ombre{
+    font-size: 2.9rem;
+  }
+.ombre {
+  text-shadow: none;
   text-transform: uppercase;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: 0;
+  background: linear-gradient(to left, rgb(26, 42, 108), rgb(178, 31, 31), rgb(253, 187, 45));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-animation-name: masked-animation;
+  -webkit-animation-duration: 40s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+h3 .ombre{
+  background: linear-gradient(to left, rgb(26, 42, 108), rgb(178, 31, 31), rgb(253, 187, 45));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-animation-name: masked-animation;
+  -webkit-animation-duration: 40s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+.intro-message h1, .intro-message h3, .tle_shadow  {
+  text-transform: uppercase;
+  color: white;
+  position:  relative;
+  background: none;
+  -webkit-text-fill-color: white;
+  -webkit-background-clip: inherit;
+}
+.intro-message .btn-secondary{
+  color: white;
+  background: linear-gradient(to left, rgb(26, 42, 108), rgb(178, 31, 31), rgb(253, 187, 45));
+  box-shadow: 6px 5px white;
+  margin: 0 25px;
+}
+.intro-message hr{
+  width: 53%;
+  border-top: 5px solid #ff6300;
+  border-bottom: 5px solid #f8f8f8;
+  margin: 40px auto;
+}
+.intro-message>h3{
+  text-shadow: none;
+}
+.btn-secondary{
+  color:red;
+  background-color:white;
+}
+svg {
+  width: 100vw;
+  height: 89%;
+}
+#svg{
+  max-height: inherit;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+svg.path path {
+  stroke: none;
+}
+svg.stroke path {
+  fill: none;
+  stroke-width: 1px;
+}
+svg .circle {
+  fill: #fff;
+}
+.dg.ac{
+  display: none;
+}
+
+/*  ----- Les competences -----  */
+#competences {
+  height:80vh;
+}
+/* Background */
+#backSkills{
+  position:absolute;
+  left: -50vw;
+  bottom: -59px;
+}
+.pink80{
+  z-index: 100;
+  background-color: #263472;
+  width: 200vw;
+  left: 0;
+  right: 0;
+  height: 41vh;
+  background-image: url(../images/80back.png);
+  background-repeat: repeat;
+  background-size: 180px 51px;
+  transform: perspective(19em) rotateX(67deg);
+  animation-name: moveBG;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  border-radius:500px;
+}
+.section-heading {
+  margin: 64px 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  font-size: 3rem;
+}
+.section-heading .ombre{
+  top: 59px;
+  left: -4px;
+}
+@-webkit-keyframes moveBG {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        /*background-position:  -180px 0;*/
+        background-position:  0 51px;
+    }
+}
+/* Skill graph */
+.pentagon {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    padding: 3px 3px 28px 3px;
+    display:inline-block;
+  }
+  .pentagon::after {
+    margin: auto; */
+    right: 0;
+    border-radius: 50%;
+    content: "";
+    width: 158px;
+    height: 13px;
+    background-color: rgba(0,0,0,0.6);
+    bottom: 0px;
+    margin: auto;
+    left: 48%;
+    /* transform: rotate(45deg); */
+    position: absolute;
+    z-index: -1;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+    z-index: 1000;
+  }
+  .pentagon canvas{
+    position: relative;
+    animation-name: balance;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    bottom: 0;
+    left:0;
+  }
+  .skillGraphi:nth-of-type(even) canvas{
+    animation-delay:-0.5s;
+    animation-duration: 4.5s;
+    animation-name: balance;
+
+  }
+#c {
+  margin: auto;
+}
+
+@keyframes balance {
+  0%{
+    bottom:7px;
+  }
+  50%{
+    bottom:-7px;
+  }
+  100%{
+    bottom:7px;
+  }
+}
+@keyframes height {
+  0%{
+    left:0px;
+    bottom:25px;
+  }
+  13%{
+
+  }
+  25%{
+    left:-50px;
+    bottom:0;
+  }
+  50%{
+    bottom:50px;
+  }
+  75%{
+    left:50px;
+    bottom:0;
+  }
+  100%{
+    left:0px;
+    bottom:25px;
+  }
+}
+
+/* Stars Effects */
+
+.gradient {
+  overflow:hidden;
+  background: linear-gradient(#480a4e 0%,#250731 58%,  #fff 73% ,#fff 100%);
+  position: relative;
+
+
+}
+/*
+.gradient-animé {
+  overflow:hidden;
+  position: relative;
+  background: linear-gradient(177deg, #80068f, #9916ba, #0b2086, #616faf, #a75c18, #e0683f, #f0c575, #68d6ae, #68bad6, #99d2e5, #3ec0f8, #c98d1c, #ef9e7b, #7bb3ef, #2e639c, #6a0989);
+  background-size: 3200% 3200%;
+  -webkit-animation: sunset 34s ease infinite;
+  -moz-animation: sunset 34s ease infinite;
+  animation: sunset 34s ease infinite;
+
+}
+
+
+@-webkit-keyframes sunset {
+    0%{background-position:50% 0%}
+    100%{background-position:51% 100%}
+}
+@-moz-keyframes sunset {
+    0%{background-position:50% 0%}
+    100%{background-position:51% 100%}
+}
+@keyframes sunset {
+    0%{background-position:50% 0%}
+    100%{background-position:51% 100%}
+}
+*/
+
+
+.star {
+  color: #f5f5f5;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+}
+.star div {
+  background-color: #f5f5f5;
+  position: absolute;
+  border-radius: 50%;
+}
+.star div:first-child {
+  height: 25%;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.star div:last-child {
+  height: 100%;
+  width: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Portfolio */
+#portfolio .portfolio-item {
+  right: 0;
+  margin: 0 0 15px; }
+  #portfolio .portfolio-item .portfolio-link {
+    position: relative;
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+    cursor: pointer; }
+    #portfolio .portfolio-item .portfolio-link .caption {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: all ease 0.5s;
+      -moz-transition: all ease 0.5s;
+      transition: all ease 0.5s;
+      opacity: 0;
+      background: rgba(24, 188, 156, 0.9); }
+      #portfolio .portfolio-item .portfolio-link .caption:hover {
+        opacity: 1; }
+      #portfolio .portfolio-item .portfolio-link .caption .caption-content {
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 20px;
+        margin-top: -12px;
+        text-align: center;
+        color: white; }
+        #portfolio .portfolio-item .portfolio-link .caption .caption-content i {
+          margin-top: -12px; }
+        #portfolio .portfolio-item .portfolio-link .caption .caption-content h3,
+        #portfolio .portfolio-item .portfolio-link .caption .caption-content h4 {
+          margin: 0; }
+
+#portfolio * {
+  z-index: 2; }
+
+@media (min-width: 767px) {
+  #portfolio .portfolio-item {
+    margin: 0 0 30px; } }
+
+.portfolio-modal .modal-dialog {
+  max-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border: none;
+  border-radius: 0;
+  background-clip: border-box;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+  .portfolio-modal .modal-dialog .modal-content {
+    padding: 100px 0;
+    border: 0;
+    border-radius: 0; }
+    .portfolio-modal .modal-dialog .modal-content h2 {
+      font-size: 3em;
+      margin: 0; }
+    .portfolio-modal .modal-dialog .modal-content img {
+      margin-bottom: 30px; }
+    .portfolio-modal .modal-dialog .modal-content .item-details {
+      margin: 30px 0; }
+
+.portfolio-modal .close-modal {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  background-color: transparent; }
+  .portfolio-modal .close-modal:hover {
+    opacity: 0.3; }
+  .portfolio-modal .close-modal .lr {
+    /* Safari and Chrome */
+    z-index: 1051;
+    width: 1px;
+    height: 75px;
+    margin-left: 35px;
+    /* IE 9 */
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: #2C3E50; }
+    .portfolio-modal .close-modal .lr .rl {
+      /* Safari and Chrome */
+      z-index: 1052;
+      width: 1px;
+      height: 75px;
+      /* IE 9 */
+      -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+      background-color: #2C3E50; }
+
+.portfolio-modal .modal-backdrop {
+  display: none;
+  opacity: 0; }
+
+.adminTable {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/*$ portfolio | view  $*/
+#portfolio {
+  height:80vh;
+  max-height:80vh;
+  overflow:hidden;
+  }
+  #portfolio .nav {
+    margin-top: 20px;
+  }
+#view {
 }
